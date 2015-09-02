@@ -16,7 +16,7 @@ class Application extends ParentApplication
      */
     public function __construct()
     {
-        parent::__construct('Platform.sh Docker', '0.0.1');
+        parent::__construct('Platform Docker', '0.0.1');
         $this->setDefaultTimezone();
         $this->addCommands($this->getCommands());
     }
@@ -32,17 +32,18 @@ class Application extends ParentApplication
         }
 
         $commands[] = new Command\InitCommand();
+        $commands[] = new Command\LinkCommand();
         $commands[] = new Command\Docker\UpCommand();
         $commands[] = new Command\Docker\StopCommand();
-        $commands[] = new Command\Platform\DbSyncCommand();
-        $commands[] = new Command\LinkCommand();
         $commands[] = new Command\Docker\SshCommand();
         $commands[] = new Command\Docker\LogsCommand();
+        $commands[] = new Command\Docker\ProxyCommand();
         $commands[] = new Command\Docker\RebuildCommand();
         $commands[] = new Command\Flamegraph\SetupCommand();
         $commands[] = new Command\Flamegraph\CreateCommand();
         $commands[] = new Command\Flamegraph\UnpatchCommand();
-        $commands[] = new Command\Docker\ProxyCommand();
+        $commands[] = new Command\Project\DbSyncCommand();
+        $commands[] = new Command\Project\BehatCommand();
         return $commands;
     }
 
